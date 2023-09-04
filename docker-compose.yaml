@@ -1,0 +1,26 @@
+version: '3.7'
+services:
+  tour-agency:
+    container_name: kriminalci
+    build: .
+    image: kriminalci:latest
+    ports:
+      - 80:8080
+    depends_on:
+      - mysql
+  mysql:
+    image: mysql:latest
+    command: --character-set-server=utf8 --collation-server=utf8_general_ci
+    environment:
+      - MYSQL_USER=test
+      - MYSQL_PASSWORD=lozinka
+      - MYSQL_ROOT_PASSWORD=lozinka
+      - MYSQL_DATABASE=kriminalci
+    ports:
+      - '3306:3306'
+    volumes:
+      - mysql-data:/var/lib/mysql
+    restart: always
+
+volumes:
+  mysql-data:

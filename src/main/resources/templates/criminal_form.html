@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Add/Edit Criminal</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <style>
+    body {
+      background-color: #222;
+      color: white;
+    }
+    .form-container {
+      background-color: #333;
+      padding: 20px;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+    .form-container button[type="submit"] {
+      margin-top: 10px;
+    }
+    .form-container a {
+      display: inline-block;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<h3 th:if="${criminal.id}" class="mt-3">Edit Criminal</h3>
+<h3 th:unless="${criminal.id}" class="mt-3">Add Criminal</h3>
+
+<div class="form-container">
+  <form th:action="@{/add_criminal}" th:object="${criminal}" method="post">
+    <input type="hidden" th:field="*{id}" />
+    <div class="form-group">
+      <label for="firstName">First Name:</label>
+      <input type="text" class="form-control" id="firstName" th:field="*{name}" required />
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Last Name:</label>
+      <input type="text" class="form-control" id="lastName" th:field="*{lastName}" required />
+    </div>
+
+    <div class="form-group">
+      <label for="year">Age:</label>
+      <input type="text" class="form-control" id="year" th:field="*{year}" required />
+    </div>
+
+    <div class="form-group">
+      <label for="details">Details:</label>
+      <input type="text" class="form-control" id="details" th:field="*{details}" />
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+  <a th:href="@{/criminals}" class="btn btn-secondary mt-3">Back to Criminal List</a>
+</div>
+
+</body>
+</html>

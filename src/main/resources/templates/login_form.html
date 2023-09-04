@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Prijava na sustav</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <style>
+    body, html {
+      height: 100%;
+      background-color: #222;
+      color: white;
+    }
+    .container, .card {
+      background-color: #222;
+      border-color: #444;
+    }
+    .alert-danger {
+      background-color: #444;
+      border-color: #555;
+      color: white;
+    }
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+    .btn-primary:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+    .btn-outline-secondary {
+      color: white;
+      border-color: #6c757d;
+    }
+    .btn-outline-secondary:hover {
+      color: #333;
+      background-color: #6c757d;
+      border-color: #6c757d;
+    }
+  </style>
+</head>
+<body>
+<div class="container vh-100 d-flex justify-content-center align-items-center">
+  <div class="col-6">
+    <div class="card shadow-2-strong">
+      <div class="card-body p-5 text-center" style="background-color: #333">
+        <h3>Login</h3>
+        <form th:action="@{/login}" th:object="${user}" method="post">
+          <div class="m-3">
+            <div th:if="${param.error}" class="alert alert-danger">Invalid user information, please try again.</div>
+            <div class="form-group row">
+              <label class="col-4 col-form-label">E-mail </label>
+              <div class="col-8">
+                <input type="email" th:field="*{email}" class="form-control" required />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-4 col-form-label">Password </label>
+              <div class="col-8">
+                <input type="password" th:field="*{password}" class="form-control"
+                       required minlength="6" maxlength="10"/>
+              </div>
+            </div>
+            <div>
+              <button type="submit" class="btn btn-block btn-primary">Sign in</button>
+            </div>
+            <div>
+              <a href="register" class="mt-2 btn btn-block btn-outline-secondary">Register</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
